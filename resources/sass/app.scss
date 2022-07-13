@@ -33,3 +33,40 @@ h1,h2,h3,h4,h5,h6 {
   width: 100%;
   margin: 0 auto;
 }
+
+
+
+// success page 
+.success {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+
+  &__qr {
+    margin: 0 auto;
+    text-align: center;
+    padding: .5rem;
+    margin: 2rem 0 0 0;
+  }
+  &__span {
+    font-size: 9px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  &__thank {
+    padding-top: 3rem;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  &__data {
+    list-style: none;
+    padding-left: 0;
+  }
+}

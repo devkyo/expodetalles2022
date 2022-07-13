@@ -10274,3 +10274,36 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   width: 100%;
   margin: 0 auto;
 }
+
+.success {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  padding: 2rem;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.success__qr {
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 2rem 0 0 0;
+}
+.success__span {
+  font-size: 9px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.success__thank {
+  padding-top: 3rem;
+  font-size: 15px;
+  font-weight: 700;
+}
+.success__data {
+  list-style: none;
+  padding-left: 0;
+}

@@ -31,13 +31,16 @@ Route::get('/', function () {
 
 route::get('/visitante/create', [VisitanteController::class,'create'])->name('visitante.create');
 
-route::get('/visitante/success', [VisitanteController::class,'success'])->name('visitante.success');
+route::get('/visitante/success/{visitante}', [VisitanteController::class,'success'])->name('success');
 
 // Route::get('/visitante', function () {
     
 //     $visitante = expo2022::where('visitante_id',3)->first();
 //     return $visitante->visitante;
 // });
+
+
+route::get('/asintencia/{$token}', [VisitanteController::class,'asistencia'])->name('asistencia');
 
 
 // Route::post('/visitante/store',[VisitanteController::class,'store'])->name('visitante.store');

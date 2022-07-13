@@ -38,8 +38,7 @@ class VisitanteController extends Controller
     public function store(StoreVisitanteRequest $request)
     {
        
-
-         $visitante = Visitante::create([
+        $visitante =  Visitante::create([
             'razonsocial' =>  $request->razonsocial,
             'nombres' =>   $request->nombres,
             'apellidos' =>  $request->apellidos,
@@ -52,11 +51,12 @@ class VisitanteController extends Controller
             'website'  =>    $request->website,
             'representa'  =>  $request->representa,
             'busca'  =>     $request->busca, 
-            'qr'    => Str::random(40)
+            'qr'    => 'http://127.0.0.1:8000/asistencia/'.Str::random(40)
         ]);
-
-
-        return redirect()->route('visitante.success',[$visitante]);
+        
+        
+        return redirect()->route('success',['visitante'=>$visitante->id]);
+        // return view('visitantes.success',$visitante);
     }
 
     /**
@@ -106,10 +106,24 @@ class VisitanteController extends Controller
 
     public function success(Visitante $visitante)
     {
-        $visitant = Visitante::find($visitante->id);
-
-        // return view('visitantes.success',['visitante' => $visitante]);
-
-        return dd($visitant);
+        
+        $data = Visitante::where('id',$visitante->id)->get();
+        return view('visitantes.success',['data'=>$data]);
     }
+
+
+    public function asistencia(Visitante $visitante){
+        if($success){
+            $asistente = Visitante::where('token',$visitante->token)->get();
+            return view('visitantes.asistencia',['asistente'=> $asistente]);
+        }else {
+            return 'no existe';
+        }
+        
+        return dd($success);
+    }
+
+    
+
+
 }
