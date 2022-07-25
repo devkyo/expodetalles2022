@@ -24,6 +24,19 @@
 <div class="container-form mt-5">
   <img class="mx-auto d-block"  style="max-width: 200px;" src="http://expodetallesperu.pe/wp-content/uploads/2020/02/expo2020-1.png" alt="">
   <h1 style="font-weight: bolder" class="text-center mt-3">Registro Online</h1>
+
+
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
   
   <form class="p-4 card mb-5" action="./store" method="post">
     @csrf

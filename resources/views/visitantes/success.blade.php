@@ -23,30 +23,34 @@
 
 <div class="container-form mt-5">
 
+    <div style="text-align:center" class="mb-3">
+        <img style="max-width:140px" src="http://expodetallesperu.pe/wp-content/uploads/2020/02/expo2020-1.png" alt="">
+    </div>
     <div class="success">
         
 
         @foreach ($data as $dat)
-            <h2 class='text-center mb-3'>Registro exitoso!</h1>
+            <h2 class='text-center mb-3'>¡Registro exitoso!</h1>
 
           
                 <div class="success__qr">
-                    {!! QrCode::size(200)->format('svg')->generate($dat->qr); !!}
+                    {!! QrCode::size(200)->format('svg')->generate(url('/asistencia').'/'.$dat->qr); !!}
                 </div>
                 <div class='success__span'>Evita las colas, presenta tu codigo QR en el ingreso y acceder más rapido.</div>
                 
 
-                <p class="success_thank">Tu acreditación fue registrado con exito, te esperamos este 7,8 y 9 de agosto en el Centro de Exposiciones Jockey, de 3:00 p.m. a 9:00 p.m.</p>
+                <p class="success_thank">Hola <strong>{{$dat->nombres}}</strong>, el registro de tu acreditación de tu empresa <strong>{{$dat->razonsocial}}</strong> fue todo un exito. Te hemos enviado un email con el siguiente codigo QR para el acceso a la Expo, recuerda presentar el codigo QR en el ingreso para evitar las colas. <strong>Te esperamos este 10,11 y 12 de agosto en el Centro de Exposiciones Jockey, de 3:00 p.m. a 9:00 p.m.</strong></p>
+                {{-- <h5>Tus d</h5>
                 <ul class='success__data'>
                     <li><strong>Tus datos: </strong> {{$dat->nombres}}{{$dat->apellidos}}</li>
                     <li><strong>Su empresa: </strong> {{$dat->razonsocial}}</li>
                     <li><strong>De donde nos visita: </strong> {{$dat->direccion}}, {{$dat->pais}}</li>
                     <li><strong>Giro de negocio: </strong> {{$dat->representa}}</li>
-                </ul>
+                </ul> --}}
                 
         @endforeach
 
-                <button class="btn d-flex mx-auto btn-outline-warning mt-4" onclick="window.print();return false;">Guardar acreditación</button>
+                <button class="btn d-flex mx-auto btn-outline-warning mt-4" onclick="window.print();return false;">Imprimir acreditación</button>
     </div>
 </div>
 

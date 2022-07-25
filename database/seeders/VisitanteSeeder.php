@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Visitante;
 use Illuminate\Database\Seeder;
 
 class VisitanteSeeder extends Seeder
@@ -13,6 +13,6 @@ class VisitanteSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Visitante::factory(20)->create();
     }
 }

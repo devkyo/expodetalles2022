@@ -3,19 +3,76 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Visitantes registrados') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <a href="./asistencia/"></a>
+                <div class="container">
+                   
+                    
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Razón social</th>
+                            <th scope="col">Nombres y apellidos</th>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Representa</th>
+                            <th scope="col">Busca</th>
+                            <th scope="col">Asistencia</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($visitantes as $visitante)
+                            <tr>
+                                <td>{{$visitante->id}}</td>
+                                <td>{{$visitante->razonsocial}}</td>
+                                <td>{{$visitante->nombres}} {{$visitante->apellidos}}</td>
+                                <td>{{$visitante->cargo}}</td>
+                                <td>{{$visitante->representa}}</td>
+                                <td>{{$visitante->busca }}</td>
+                                <td>
+                                    @foreach ($visitante->expo2022 as $expo )
+                                        
+                                  
+                                    @if($loop->first)
+                                        @if($expo->asistencia === 0)
+                                            <img style="max-width:20px" src="https://cdn3.iconfinder.com/data/icons/miscellaneous-80/60/uncheck-512.png" alt="">
+                                        @else 
+                                            <img style="max-width:20px" src="https://cdn2.iconfinder.com/data/icons/greenline/512/check-512.png" alt="">
+                                        @endif
+                                    @endif
+                                    
+                                    
+                                    
 
-                    {{ __('You are logged in!') }}
+                                    @endforeach
+                                </td>
+
+
+                                {{-- <td>
+                                @foreach ($visitante->expo2022 as $expo )
+                                    <div>
+                                    @if ($expo->asistencia === 0)
+                                        <img style="max-width:20px" src="https://cdn2.iconfinder.com/data/icons/greenline/512/check-512.png" alt="">
+                                    @else
+                                         <div><img style="max-width:20px" src="https://cdn3.iconfinder.com/data/icons/miscellaneous-80/60/uncheck-512.png" alt=""></div>
+                                    @endif
+                                    </div>
+                                @endforeach
+                                </td>
+                                --}}
+                            </tr>
+                            @endforeach
+
+                          
+                         
+                        </tbody>
+                    </table>
+
                 </div>
+
             </div>
         </div>
     </div>

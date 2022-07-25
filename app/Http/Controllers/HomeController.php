@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Visitante;
+use App\Models\expo2022;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $visitantes = Visitante::all();
+        return view('home',compact('visitantes'));
+        // return dd($visitantes);
+        
     }
 }

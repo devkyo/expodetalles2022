@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 
     return view('welcome');
+    // return redirect('https://expodetallesperu.pe');
 
 });
 
@@ -40,15 +41,20 @@ route::get('/visitante/success/{visitante}', [VisitanteController::class,'succes
 // });
 
 
-route::get('/asintencia/{$token}', [VisitanteController::class,'asistencia'])->name('asistencia');
+route::get('/asistencia/{token}', [VisitanteController::class,'asistencia'])->name('asistencia')->middleware('auth');
 
 
-// Route::post('/visitante/store',[VisitanteController::class,'store'])->name('visitante.store');
 
 Route::post('/visitante/store', [VisitanteController::class,'store']);
 
 
+// Route::get('/visitante/store', function(){
+//     return 'adsadasdstore';
+// });
 
+
+
+Route::get('/email', [VisitanteController::class,'visitanteEmail']);
 
 
 Route::get('/qr', function () {
@@ -64,4 +70,4 @@ Route::get('/qr', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

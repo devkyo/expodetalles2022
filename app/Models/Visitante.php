@@ -4,20 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\expo2022;
 
 class Visitante extends Model
 {
     use HasFactory;
 
-    protected $table = 'visitantes';
+    // protected $table = 'visitantes';
     protected $fillable = [
+        'id',
         'razonsocial','nombres','apellidos','cargo','direccion','distrito',
         'pais','celular','website','representa','email',
-        'busca','qr',
+        'busca','qr'
     ];
 
-    public function asistencia()
+    public function expo2022()
     {
-        return $this->belongsTo(expo2022::class);
+        return $this->hasMany(expo2022::class);
     }
 }

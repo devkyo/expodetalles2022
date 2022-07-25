@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Visitante;
+use App\Models\expo2022;
 use App\Http\Requests\StoreVisitanteRequest;
 use App\Http\Requests\UpdateVisitanteRequest;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+
+use App\ConsolMaile\visitanteEmail;
+use App\Mail\VisitanteMail;
 
 class VisitanteController extends Controller
 {
@@ -37,8 +42,14 @@ class VisitanteController extends Controller
      */
     public function store(StoreVisitanteRequest $request)
     {
-       
-        $visitante =  Visitante::create([
+        
+       $request->validate([
+            'email' =>  'required|unique:visitantes',
+       ],
+        [
+            'email.unique'  =>  'El email ingresado ya se encuentra registrado'
+        ]);
+        $visitante =  new Visitante ([
             'razonsocial' =>  $request->razonsocial,
             'nombres' =>   $request->nombres,
             'apellidos' =>  $request->apellidos,
@@ -51,12 +62,22 @@ class VisitanteController extends Controller
             'website'  =>    $request->website,
             'representa'  =>  $request->representa,
             'busca'  =>     $request->busca, 
-            'qr'    => 'http://127.0.0.1:8000/asistencia/'.Str::random(40)
+            'qr'    => Str::random(40)
         ]);
         
+        $visitante->save();
+
+        $expo2022 = expo2022::create([
+            'visitante_id'  =>  $visitante->id,
+            'asistencia'    =>  0,
+        ]);
+       
+
+
+       
         
-        return redirect()->route('success',['visitante'=>$visitante->id]);
-        // return view('visitantes.success',$visitante);
+        // return redirect()->route('success',['visitante'=>$visitante->id, 'qr'=> $visitante->qr]);
+        return redirect()->route('success',['visitante'=>   $visitante->id]);
     }
 
     /**
@@ -107,23 +128,45 @@ class VisitanteController extends Controller
     public function success(Visitante $visitante)
     {
         
+        // return 'success ok';
         $data = Visitante::where('id',$visitante->id)->get();
-        return view('visitantes.success',['data'=>$data]);
+
+       
+  
+        Mail::to('softawk@gmail.com')->send(new VisitanteMail($visitante));
+
+        // return dd($visitante);
+        return view('visitantes.success',['data'=>$data]);  
     }
 
 
-    public function asistencia(Visitante $visitante){
-        if($success){
-            $asistente = Visitante::where('token',$visitante->token)->get();
-            return view('visitantes.asistencia',['asistente'=> $asistente]);
-        }else {
-            return 'no existe';
-        }
+    public function asistencia($token){
+
+      $visitante = Visitante::where('qr',$token)->first();
+      if($visitante){
+          
+          $expo2022 = $visitante->expo2022()->first();
         
-        return dd($success);
+
+          if($expo2022->asistencia === 1){
+              return view('visitantes.inferia',[$visitante]);
+          }else {
+
+              $expo2022->asistencia = 1;
+              $expo2022->save();
+              return view('visitantes.asistencia',['visitante'=> $visitante,'expo'=>$expo2022]);
+          }
+
+      }else {
+          return 'Expositor no existe';
+      }
     }
+
+
+  // public function visitanteEmail(){
 
     
-
+  //   return view('emails.visitante');
+  // }
 
 }

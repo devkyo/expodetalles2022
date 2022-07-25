@@ -25,7 +25,7 @@ class CreateVisitantesTable extends Migration
             $table->string('distrito');
             $table->string('pais');
             $table->string('celular');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('website')->nullable();
             $table->string('representa');
             $table->string('busca');

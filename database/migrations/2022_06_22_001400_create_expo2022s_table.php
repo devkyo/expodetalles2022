@@ -13,12 +13,15 @@ class CreateExpo2022sTable extends Migration
      */
     public function up()
     {
-        Schema::create('expo2022s', function (Blueprint $table) {
+        Schema::create('Expo2022s', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('visitante_id')->unsigned();
-            $table->enum('asintencia', ['Si', 'No'])->nullable()->default('No');
 
-            $table->foreign('visitante_id')->references('id')->on('visitantes');
+            $table->integer('asistencia')->default(0);
+
+            $table->foreignId('visitante_id')
+                ->constrained('visitantes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -31,6 +34,6 @@ class CreateExpo2022sTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expo2022s');
+        Schema::dropIfExists('Expo2022s');
     }
 }
