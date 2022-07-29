@@ -40,13 +40,7 @@
                 
 
                 <p class="success_thank">Hola <strong>{{$dat->nombres}}</strong>, el registro de tu acreditación de tu empresa <strong>{{$dat->razonsocial}}</strong> fue todo un exito. Te hemos enviado un email con el siguiente codigo QR para el acceso a la Expo, recuerda presentar el codigo QR en el ingreso para evitar las colas. <strong>Te esperamos este 10,11 y 12 de agosto en el Centro de Exposiciones Jockey, de 3:00 p.m. a 9:00 p.m.</strong></p>
-                {{-- <h5>Tus d</h5>
-                <ul class='success__data'>
-                    <li><strong>Tus datos: </strong> {{$dat->nombres}}{{$dat->apellidos}}</li>
-                    <li><strong>Su empresa: </strong> {{$dat->razonsocial}}</li>
-                    <li><strong>De donde nos visita: </strong> {{$dat->direccion}}, {{$dat->pais}}</li>
-                    <li><strong>Giro de negocio: </strong> {{$dat->representa}}</li>
-                </ul> --}}
+              
                 
         @endforeach
 
