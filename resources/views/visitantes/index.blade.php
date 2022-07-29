@@ -48,6 +48,9 @@
         <input type="text" class="form-control"  placeholder="Razón social" name="razonsocial">
       </div>
       <div class="mb-3 col-12">
+        <input type="text" class="form-control"  placeholder="RUC" name="ruc">
+      </div>
+      <div class="mb-3 col-12">
         <input type="text" class="form-control"  placeholder="Nombres" name="nombres">
       </div>
 

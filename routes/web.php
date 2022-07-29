@@ -10,6 +10,8 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\VisitanteController;
 
 
+use charlieuki\ReceiptPrinter\ReceiptPrinter as ReceiptPrinter;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +32,7 @@ Route::get('/', function () {
 });
 
 
-route::get('/visitante/create', [VisitanteController::class,'create'])->name('visitante.create');
+route::get('/visitante/registro', [VisitanteController::class,'create'])->name('visitante.create');
 
 route::get('/visitante/success/{visitante}', [VisitanteController::class,'success'])->name('success');
 
@@ -48,9 +50,13 @@ route::get('/asistencia/{token}', [VisitanteController::class,'asistencia'])->na
 Route::post('/visitante/store', [VisitanteController::class,'store']);
 
 
-// Route::get('/visitante/store', function(){
-//     return 'adsadasdstore';
-// });
+Route::get('/print', function(){
+
+
+   
+//
+
+});
 
 
 
@@ -60,14 +66,21 @@ Route::get('/email', [VisitanteController::class,'visitanteEmail']);
 Route::get('/qr', function () {
     
 
-    return QrCode::format('svg')->size(300)->generate('A basic example of QR dsdsdcode!');
+    return QrCode::format('svg')->size(300)->eyeColor(0, 186, 152, 88, 0, 180, 183)->style('square')->generate('A basic example of QR dsdsdcode!');
+    // return QrCode::format('png')->merge('/public/images/expo2022.png', .3)->generate('A basic example of QR dsdsdcode!');
 
 });
 
+Route::get('/download/visitantes',[VisitanteController::class,'visitanteExport'])->name('downloadVisitante');
 
 
 
 
-Auth::routes();
+// Auth::routes();
+
+Auth::routes(['register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/registroexpo', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');

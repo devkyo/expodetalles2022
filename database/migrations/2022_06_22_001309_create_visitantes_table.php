@@ -18,6 +18,7 @@ class CreateVisitantesTable extends Migration
 
           
             $table->string('razonsocial')->nullable();
+            $table->string('ruc')->nullable();
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('cargo')->nullable();

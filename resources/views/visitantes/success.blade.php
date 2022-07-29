@@ -34,7 +34,7 @@
 
           
                 <div class="success__qr">
-                    {!! QrCode::size(200)->format('svg')->generate(url('/asistencia').'/'.$dat->qr); !!}
+                    {!! QrCode::size(200)->eyeColor(0, 186, 152, 88, 0, 180, 183)->format('svg')->generate(url('/asistencia').'/'.$dat->qr); !!}
                 </div>
                 <div class='success__span'>Evita las colas, presenta tu codigo QR en el ingreso y acceder más rapido.</div>
                 
@@ -50,7 +50,7 @@
                 
         @endforeach
 
-                <button class="btn d-flex mx-auto btn-outline-warning mt-4" onclick="window.print();return false;">Imprimir acreditación</button>
+                <button class="btn d-flex mx-auto btn-outline-warning mt-4" onclick="window.print('asdsad');return false;">Imprimir acreditación</button>
     </div>
 </div>
 

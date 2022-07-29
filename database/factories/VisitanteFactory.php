@@ -17,14 +17,15 @@ class VisitanteFactory extends Factory
     public function definition()
     {
         return [
-            'razonsocial' => $this->faker->sentence(),
+            'razonsocial' => $this->faker->company(),
+            'ruc' => $this->faker->numerify('############'),
             'nombres'  => $this->faker->name(),
             'apellidos'  => $this->faker->lastname(),
-            'cargo'  => $this->faker->sentence(),
-            'direccion'  => $this->faker->name(),
-            'distrito'   => $this->faker->name(),
-            'pais'       => $this->faker->name(),
-            'celular'       => $this->faker->phoneNumber,
+            'cargo'  => $this->faker->name(),
+            'direccion'  => $this->faker->paragraph(),
+            'distrito'   => $this->faker->city(),
+            'pais'       => $this->faker->country(),
+            'celular'       => $this->faker->phoneNumber(),
             'email'  => $this->faker->safeEmail,
             'website'    => $this->faker->sentence(),
             'representa'     => $this->faker->sentence(),

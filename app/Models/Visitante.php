@@ -15,7 +15,7 @@ class Visitante extends Model
         'id',
         'razonsocial','nombres','apellidos','cargo','direccion','distrito',
         'pais','celular','website','representa','email',
-        'busca','qr'
+        'busca','qr','ruc'
     ];
 
     public function expo2022()

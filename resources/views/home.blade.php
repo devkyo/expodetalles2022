@@ -4,14 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <div class="d-grid gap-2 justify-content-md-start mb-2">
+                <a type="button" href="{{route('downloadVisitante')}}" class="btn btn-success d-flex ">Descargar Excel</a>
+            </div>
             <div class="card">
+                
                 <div class="card-header">{{ __('Visitantes registrados') }}</div>
 
-                <a href="./asistencia/"></a>
                 <div class="container">
-                   
                     
-                    <table class="table">
+
+                  
+                    
+                    <table class="table display " id="visitantes">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -51,18 +56,6 @@
                                 </td>
 
 
-                                {{-- <td>
-                                @foreach ($visitante->expo2022 as $expo )
-                                    <div>
-                                    @if ($expo->asistencia === 0)
-                                        <img style="max-width:20px" src="https://cdn2.iconfinder.com/data/icons/greenline/512/check-512.png" alt="">
-                                    @else
-                                         <div><img style="max-width:20px" src="https://cdn3.iconfinder.com/data/icons/miscellaneous-80/60/uncheck-512.png" alt=""></div>
-                                    @endif
-                                    </div>
-                                @endforeach
-                                </td>
-                                --}}
                             </tr>
                             @endforeach
 
@@ -70,6 +63,7 @@
                          
                         </tbody>
                     </table>
+
 
                 </div>
 

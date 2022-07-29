@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Mail;
 
 use App\ConsolMaile\visitanteEmail;
 use App\Mail\VisitanteMail;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\VisitantesExport;
+
+
 
 class VisitanteController extends Controller
 {
@@ -51,6 +56,7 @@ class VisitanteController extends Controller
         ]);
         $visitante =  new Visitante ([
             'razonsocial' =>  $request->razonsocial,
+            'ruc' =>  $request->ruc,
             'nombres' =>   $request->nombres,
             'apellidos' =>  $request->apellidos,
             'cargo'    =>   $request->cargo,
@@ -163,10 +169,10 @@ class VisitanteController extends Controller
     }
 
 
-  // public function visitanteEmail(){
+    public function visitanteExport(){
 
-    
-  //   return view('emails.visitante');
-  // }
+       
+        return Excel::download(new VisitantesExport, 'visitantes.xlsx');
+    }
 
 }

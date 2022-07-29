@@ -30,21 +30,24 @@
         .printul {
           visibility: visible;
         }
+        .container-form {
+          float: left;
+        }
       }
     </style>
 </head>
 <body>
 
-<div class="container-form mt-5">
+<div class="container-form">
 
 
 
   <div class="card p-4 card1">
-   <img style="max-width:120px" class="p-2 rounded  mx-auto d-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/800px-Yes_Check_Circle.png" alt="">
-    <h5 class="text-center">Asistente registrado correctamente</h5>
+   {{-- <img style="max-width:120px" class="p-2 rounded  mx-auto d-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/800px-Yes_Check_Circle.png" alt="">
+    <h5 class="text-center">Asistente registrado correctamente</h5> --}}
     
 
-    <div id="printableArea" style="width:400px" class="mx-auto card p-4 pb-1 mt-5 mb-5">
+    <div id="printableArea" style="width:400px" class=" card p-2 pb-1">
       <ul class="printul" style="list-style: none;padding:0;">
         <li class="printul"><h2>{{$visitante->razonsocial}} </h2></li>
         <li class="printul"><strong>{{$visitante->nombres}} {{$visitante->apellidos}}</strong></li>
@@ -55,6 +58,7 @@
 
     <div class="d-grid gap-2 col-4 mx-auto">
       <button onclick="window.print()" type="button" class="btn btn-primary">Imprimir credencial</button>
+      <a href="{{route('home')}}" class="btn btn-secondary">Ir a directorio </a>
     </div>
   </div>
       
